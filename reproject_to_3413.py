@@ -20,7 +20,7 @@ from cog_utils import write_cog, OVERVIEW_LEVELS_MOSAIC
 
 IN_DIR  = "./lake_detection_binary_masks_merged_daily_v2"
 OUT_DIR = "./lake_detection_binary_masks_merged_daily_v2_3413_clipped"
-NC_PATH = "./NSIDC-0793_19720915-20220215_V01.0.nc"
+NC_PATH = "../ice_mask/NSIDC-0793_19720915-20220215_V01.0.nc"
 
 DST_CRS       = CRS.from_epsg(3413)
 DST_RES       = 10.0

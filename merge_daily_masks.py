@@ -18,8 +18,8 @@ MASK_DIR = "./lake_detection_binary_masks_parallel_v2"
 OUT_DIR = "./lake_detection_binary_masks_merged_daily_v2"
 
 # Set to "YYYYMMDD" strings to restrict processing, or None to process all dates
-DATE_START = "20180501"
-DATE_END = "20190930"
+DATE_START = "20200831"
+DATE_END = "20200930"
 
 
 def merge_date(args):

@@ -18,7 +18,7 @@ from cog_utils import write_cog, OVERVIEW_LEVELS_TILE
 
 API_URL = "https://planetarycomputer.microsoft.com/api/stac/v1"
 TILE_LIST_PATH = "./sentinel_2_tiles.csv"
-DATE_RANGE = "2021-05-01/2021-08-31"
+DATE_RANGE = "2020-08-01/2020-08-15"
 CLOUD_COVER_MAX = 10
 
 NDWI_MIN = 0.3  # Dunmire 2021 uses 0.5; 0.3 bc we clip to ice sheet extents from Greene 2024 
@@ -41,10 +41,11 @@ def lake_detect(args):
     out_dir = os.path.join(OUT_ROOT, tile)
     os.makedirs(out_dir, exist_ok=True)
     out_file = os.path.join(out_dir, f"{item_id}_lake_pixels.tif")
+    out_file_ndwi = os.path.join(out_dir, f"{item_id}_NDWI.tif")
 
-    if os.path.exists(out_file):
-        print(f"  skip (exists): {item_id}")
-        return
+    # if os.path.exists(out_file):
+    #     print(f"  skip (exists): {item_id}")
+    #     return
 
     print(f"  reading: {item_id}")
     offset = _boa_offset(item)
@@ -66,10 +67,14 @@ def lake_detect(args):
     mask = (ndwi > NDWI_MIN).astype(np.int8)
 
     profile.update(dtype="int8")
-    write_cog(mask, profile, out_file,
+    # write_cog(mask, profile, out_file,
+    #           tags={"source_items": item_id},
+    #           overview_levels=OVERVIEW_LEVELS_TILE)
+    profile_ndwi = profile.copy()
+    profile_ndwi.update(dtype="float32")
+    write_cog(ndwi, profile_ndwi, out_file_ndwi,
               tags={"source_items": item_id},
               overview_levels=OVERVIEW_LEVELS_TILE)
-
     print(f"  wrote: {item_id}")
 
 
