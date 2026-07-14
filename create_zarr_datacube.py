@@ -14,10 +14,12 @@ import rioxarray  # noqa: F401  registers .rio accessor
 import zarr
 from zarr.codecs import ZstdCodec
 
-COG_DIR    = "./lake_detection_binary_masks_merged_daily_v2_3413_clipped"
-OUT_ZARR   = "./lake_detection_binary_masks_2020.zarr"
-START_DATE = "20200501"  # inclusive, YYYYMMDD
-END_DATE   = "20200930"  # inclusive, YYYYMMDD
+# COG_DIR    = "./lake_detection_binary_masks_merged_daily_v2_3413_clipped"
+# OUT_ZARR   = "./lake_detection_binary_masks_2020.zarr"
+COG_DIR    = "./test_masks"
+OUT_ZARR   = "./test_masks/lake_detection_binary_masks_TEST.zarr"
+START_DATE = "20190501"  # inclusive, YYYYMMDD
+END_DATE   = "20190510"  # inclusive, YYYYMMDD
 
 start_dt = datetime.strptime(START_DATE, "%Y%m%d")
 end_dt   = datetime.strptime(END_DATE,   "%Y%m%d")
